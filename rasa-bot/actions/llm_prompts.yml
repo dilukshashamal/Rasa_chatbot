@@ -1,0 +1,97 @@
+# set the personality of the
+# LLM generated responses
+personality: "You are a conversational AI assistant for 3CS, a leading web design company. Your primary role is to assist users with their web design-related inquiries and ensure a smooth experience. Your responses should be clear, concise, and focused on gathering necessary information for accurate quotes. Your goal is to efficiently guide potential clients through the initial inquiry process while maintaining professionalism and friendliness."
+
+# custom prompts to override the
+# default response generation prompt
+# the name MUST match an existing
+# bot utterance
+generate:
+  - name: "utter_test"
+    prompt: "prompt"
+
+# custom prompts to override the
+# default response rephrasing prompt
+# the name MUST match an existing
+# bot utterance
+rephrase:
+  - name: "utter_greet"
+    prompt: 'Greet the user according to the way the user has greeted. Be creative when greeting. 
+             The rephrased response should be provided in JSON format, structured as: \n\n
+             {"answer": "greeting"}\n\n
+             The greeting should align with the user and the response should only include 
+             the "greeting" field with the generated greeting and no additional information. 
+             Please refrain from introducing any new information or generating fictional 
+             content. You can use the following data to craft the response. \n\n
+             data: 
+             {{response}} \n\n
+             user_query: `{{query}}`'
+
+  - name: "utter_goodbye"
+    prompt: 'Given the following response and the user query, please rephrase the response 
+             in a manner suitable to the user query. Ensure that the rephrased response is 
+             relevant to the query and conveys the same information as the original response. 
+             The rephrased response should be provided in JSON format, structured as: \n\n
+             {"answer": "rephrased_answer"}\n\n
+             Focus on modifying the response to align it with the user query while maintaining 
+             the same meaning. The response should only include the "rephrased_response" field 
+             with the modified answer and no additional information. Please refrain from 
+             introducing any new information or generating fictional content. \n\n
+             response: \n
+             {{response}} \n\n
+             user_query: `{{query}}`'
+
+# custom prompts to be used by LLM
+# related actions which can be retrieved
+# easily via the `prompts` package.
+# A custom name can be given to these prompts.
+custom:
+  - name: "welcome"
+    prompt: 'Construct an appropriate response to welcome the user for the first time. 
+             The response should be provided in JSON format, structured as: \n\n
+             {"answer": "welcome_response"}\n\n
+             The response should only include the "welcome_response" field 
+             with the generated welcome message and no additional information. Please 
+             refrain from introducing any new information or generating fictional content.'
+
+  - name: "prices"
+    prompt: 'Given the following pricing details and the user query, please generate an appropriate 
+             response in a manner suitable to the user query. Ensure that the rephrased response is 
+             relevant to the query and conveys the requested information by the user. The rephrased 
+             response should be provided in JSON format, structured as: \n\n
+             {"answer": "rephrased_answer"}\n\n
+             The response should only include the "rephrased_response" field 
+             with the modified answer and no additional information. Please refrain from 
+             introducing any new information or generating fictional content. \n\n
+             pricing details: \n
+             {{pricing}} \n\n
+             user_query: `{{query}}`'
+
+# Handle user inquiries about web design
+# in a single conversation flow
+conversation:
+  - name: "web_design_inquiry"
+    steps:
+      - user_intent: "ask_web_design"
+        assistant_response: "Sure. We need to gather some information to give you an accurate quote. What is your budget for this project?"
+
+      - user_intent: "provide_budget"
+        if:
+          condition: "budget < 500000"
+          assistant_response: "I'm sorry, but the minimum budget we undertake website design and development projects is Rs. 500,000."
+        else:
+          assistant_response: "Do you have a deadline you need the site completed by?"
+
+      - user_intent: "provide_deadline"
+        if:
+          condition: "deadline < 1 month"
+          assistant_response: "I'm sorry, but we are not in a position to deliver a high quality solution in that time frame."
+        else:
+          assistant_response: "We have sent your inquiry to our team, who will update you regarding that."
+          
+  - name: "repeated_greeting"
+    steps:
+      - user_intent: "greet"
+        if:
+          condition: "user_repeated_greeting"
+          assistant_response: "Can you tell me more about your requirement?"

@@ -1,0 +1,37 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - budget_provided
+  - deadline_provided
+  - thank
+
+actions:
+  - action_llm_generate_response_common
+  - action_llm_rephrase_response_common
+  - action_llm_rephrase_response_welcome
+  - action_llm_rephrase_response_budget_provided
+  - action_llm_rephrase_response_goodbye
+
+responses:
+  utter_welcome:
+    - text: "How can I help you?"
+
+  utter_greet:
+    - text: "Can you tell me more about your requirement?"
+
+  utter_goodbye:
+    - text: "Thank you for your enquiry. Have a nice day."
+
+  utter_budget_provided:
+    - text: "Thank you for providing your budget. We'll take that into account."
+
+  utter_deadline_provided:
+    - text: "Got it, we'll work with your deadline."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

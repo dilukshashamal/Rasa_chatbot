@@ -1,0 +1,27 @@
+# version: "3.1"
+
+# stories:
+# - story: web design inquiry happy path
+#   steps:
+#   - intent: greet
+#   - action: action_llm_rephrase_response_greet
+#   - intent: ask_web_design
+#   - action: action_llm_generate_response_web_design
+#   - intent: provide_budget
+#   - action: action_llm_generate_response_budget
+#   - intent: provide_deadline
+#   - action: action_llm_generate_response_deadline
+#   - intent: thank
+#   - action: action_llm_rephrase_response_common
+
+# - story: web design inquiry denied path
+#   steps:
+#   - intent: greet
+#   - action: action_llm_rephrase_response_greet
+#   - intent: ask_web_design
+#   - action: action_llm_generate_response_web_design
+#   - intent: provide_budget
+#   - action: action_llm_generate_response_budget
+#   - intent: deny
+#   - action: action_llm_rephrase_response_goodbye
+

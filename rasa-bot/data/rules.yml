@@ -1,0 +1,39 @@
+version: "3.1"
+
+rules:
+- rule: get started
+  conversation_start: true
+  steps:
+  - intent: welcome
+  - action: action_llm_rephrase_response_welcome
+
+- rule: greet the user
+  steps:
+  - intent: greet
+  - action: action_llm_rephrase_response_greet
+
+- rule: say goodbye
+  steps:
+  - intent: goodbye
+  - action: action_llm_rephrase_response_common
+
+- rule: handle web design inquiry
+  steps:
+  - intent: ask_web_design
+  - action: action_llm_generate_response_web_design
+
+- rule: handle budget provided
+  steps:
+  - intent: provide_budget
+  - action: action_llm_generate_response_budget
+
+- rule: handle deadline provided
+  steps:
+  - intent: provide_deadline
+  - action: action_llm_generate_response_deadline
+
+- rule: say anytime
+  steps:
+  - intent: thank
+  - action: action_llm_rephrase_response_common
+

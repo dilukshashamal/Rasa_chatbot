@@ -1,0 +1,79 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: budget_provided
+  examples: |
+    - My budget is Rs. 400k
+    - We have a budget of Rs. 700k
+    - I can spend Rs. 1 million
+    - The budget is Rs. 300k
+    - Around Rs. 500k
+    - Less than Rs. 500k
+
+- intent: deadline_provided
+  examples: |
+    - We need it in 2 weeks
+    - The deadline is 1 month
+    - We can wait for 2 months
+    - Within 3 weeks
+    - The project deadline is in 6 weeks
+    - In 5 months
+
+- intent: thank
+  examples: |
+    - thank you
+    - thanks
+    - thank you so much
+    - ty
+    - thanks bud
+    - yo thanks
+    - thank
+    - accept my gratitude
