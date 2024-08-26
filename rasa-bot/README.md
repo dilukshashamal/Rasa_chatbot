@@ -1,4 +1,4 @@
-# 3cs-bot
+# Rasa-bot
 
 A Rasa bot that can generate and rephrase responses on the fly using LLMs
 
