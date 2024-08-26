@@ -13,7 +13,7 @@ To deploy and run the bot, `docker` and `docker-compose` are required.
 
 ## Talking to the bot
 
-The bot is a demo 3CS web design inquiry assistant that can do the following:
+The bot is a demo inquiry assistant that can do the following:
 
 - Greet users
 - Handle web design inquiries
